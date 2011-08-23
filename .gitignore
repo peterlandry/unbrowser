@@ -1,0 +1,6 @@
+
+*.swp
+
+unbrowser/static/*
+
+.vagrant
