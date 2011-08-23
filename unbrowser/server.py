@@ -6,13 +6,9 @@ from flask import Flask, redirect, request, url_for, abort
 app = Flask(__name__)
 
 def _param(name, default=None):
-    return request.args.get(name, default)
-    if name in request.form:
-        return request.form[name]
-    else:
-        return default
+    return request.form.get(name, default)
 
-@app.route('/webkit/rasterize/', methods=['GET','POST'])
+@app.route('/webkit/rasterize/', methods=['POST'])
 def rasterize():
     url = _param('url')
     width = int(_param('width', 800))
