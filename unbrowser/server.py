@@ -1,8 +1,9 @@
 import os
 import subprocess
 import uuid
+import json
 
-from flask import Flask, redirect, request, url_for, abort
+from flask import Flask, redirect, request, url_for, abort, jsonify
 app = Flask(__name__)
 
 def _param(name, default=None):
@@ -31,6 +32,7 @@ def rasterize():
         'xvfb-run',
         '--server-args=-screen 0, %dx%dx24' % (width+100, height+100),
         'phantomjs',
+        '--disk-cache=no',
         'rasterize.js',
         url,
         local_output,
@@ -40,7 +42,7 @@ def rasterize():
     ]
 
     subprocess.call(args, stderr=subprocess.STDOUT)
-    return redirect(url_for('static', filename='%s.%s' % (_uuid, frmt)))
+    return jsonify(status='success', download_path=url_for('static', filename='%s.%s' % (_uuid, frmt)))
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0',debug=True)
