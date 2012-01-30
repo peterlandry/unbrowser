@@ -70,7 +70,7 @@
           var page_to_render =$("#page_to_render").val();
 
           $.post(unbrowser_url+"webkit/rasterize/",{url:page_to_render}, function(data){
-              $("#response").html("<b>Status:</b>"+data.status+"<br/> <img src='"+data.download_path+"'");
+              $("#response").html("<b>Status:</b>"+data.status+"<br/> <img src='"+data.download_path+"'>");
               console.log(data);
           });
 
