@@ -43,7 +43,7 @@
 <div>
     <p>
         <label for="unbrowser_url">Unbrowser Url</label>
-        <input type="text" id="unbrowser_url" value="http://localhost:5000">
+        <input type="text" id="unbrowser_url" value="http://localhost:5000/">
         <label for="page_to_render" >Page to Render</label>
         <input type="text" id="page_to_render" value="http://google.com">
 
@@ -53,6 +53,7 @@
 
     <h3>Response</h3>
     <div id="response">
+        
 
     </div>
 
@@ -68,8 +69,9 @@
           var unbrowser_url = $("#unbrowser_url").val();
           var page_to_render =$("#page_to_render").val();
 
-          $.post(unbrowser_url+"webkit/rasterize/?url="+page_to_render, function(data){
-              $("#response").html(data);
+          $.post(unbrowser_url+"webkit/rasterize/",{url:page_to_render}, function(data){
+              $("#response").html("<b>Status:</b>"+data.status+"<br/> <img src='"+data.download_path+"'");
+              console.log(data);
           });
 
 
