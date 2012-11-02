@@ -2,5 +2,5 @@
 *.swp
 
 unbrowser/static/*
-
+.idea/*
 .vagrant

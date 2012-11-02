@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Basic Usage via post request</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <style type="text/css">
+        label, input{display: block;margin-bottom: 10px;}
+        input{padding:5px;width: 300px;}
+        #submit_btn {
+            -moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
+            -webkit-box-shadow:inset 0px 1px 0px 0px #ffffff;
+            box-shadow:inset 0px 1px 0px 0px #ffffff;
+            background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ededed), color-stop(1, #dfdfdf) );
+            background:-moz-linear-gradient( center top, #ededed 5%, #dfdfdf 100% );
+            filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ededed', endColorstr='#dfdfdf');
+            background-color:#ededed;
+            -moz-border-radius:6px;
+            -webkit-border-radius:6px;
+            border-radius:6px;
+            border:1px solid #dcdcdc;
+            display:inline-block;
+            color:#777777;
+            font-family:arial;
+            font-size:15px;
+            font-weight:bold;
+            padding:6px 24px;
+            text-decoration:none;
+            text-shadow:1px 1px 0px #ffffff;
+        }#submit_btn:hover {
+             background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #dfdfdf), color-stop(1, #ededed) );
+             background:-moz-linear-gradient( center top, #dfdfdf 5%, #ededed 100% );
+             filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#dfdfdf', endColorstr='#ededed');
+             background-color:#dfdfdf;
+         }#submit_btn:active {
+              position:relative;
+              top:1px;
+          }
+    </style>
+</head>
+<body>
+<h1>Unbrowser basic usage via post request</h1>
+
+<div>
+    <p>
+        <label for="unbrowser_url">Unbrowser Url</label>
+        <input type="text" id="unbrowser_url" value="http://localhost:5000/">
+        <label for="page_to_render" >Page to Render</label>
+        <input type="text" id="page_to_render" value="http://google.com">
+
+        <a href="#" id="submit_btn">Submit</a>
+    </p>
+
+
+    <h3>Response</h3>
+    <div id="response">
+        
+
+    </div>
+
+</div>
+
+
+
+</body>
+
+<script type="text/javascript">
+    $(function(){
+       $("#submit_btn").click(function(){
+          var unbrowser_url = $("#unbrowser_url").val();
+          var page_to_render =$("#page_to_render").val();
+
+          $.post(unbrowser_url+"webkit/rasterize/",{url:page_to_render}, function(data){
+              $("#response").html("<b>Status:</b>"+data.status+"<br/> <img src='"+data.download_path+"'>");
+              console.log(data);
+          });
+
+
+       });
+    });
+</script>
+
+</html>

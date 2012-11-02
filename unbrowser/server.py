@@ -3,7 +3,7 @@ import subprocess
 import uuid
 import json
 
-from flask import Flask, redirect, request, url_for, abort, jsonify
+from flask import Flask, redirect, request, url_for, abort, jsonify,render_template
 app = Flask(__name__)
 
 def _param(name, default=None):
@@ -43,6 +43,16 @@ def rasterize():
 
     subprocess.call(args, stderr=subprocess.STDOUT)
     return jsonify(status='success', download_path=url_for('static', filename='%s.%s' % (_uuid, frmt)))
+
+
+@app.route('/examples/basic')
+def example():
+    return render_template('basic.html')
+
+
+
+
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0',debug=True)
