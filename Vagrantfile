@@ -20,13 +20,13 @@ Vagrant::Config.run do |config|
   # Forward a port from the guest to the host, which allows for outside
   # computers to access the VM, whereas host only networking does not.
   # config.vm.forward_port "http", 80, 8080
-  config.vm.forward_port("web", 5000, 5000)
+  config.vm.forward_port(5000, 5000)
   #config.vm.forward_port("psql", 5432, 5432)
   # Share an additional folder to the guest VM. The first argument is
   # an identifier, the second is the path on the guest to mount the
   # folder, and the third is the path on the host to the actual folder.
   # config.vm.share_folder "v-data", "/vagrant_data", "../data"
-  #config.vm.share_folder "proj", "/home/vagrant/communityprofiles", "./communityprofiles"
+  config.vm.share_folder "proj", "/home/vagrant/unbrowser", "./unbrowser"
   #config.vm.share_folder "proj-data", "/home/vagrant/data", "./data"
   # Enable provisioning with Puppet stand alone.  Puppet manifests
   # are contained in a directory path relative to this Vagrantfile.
