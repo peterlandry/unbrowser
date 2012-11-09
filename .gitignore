@@ -4,3 +4,6 @@
 unbrowser/static/*
 .idea/*
 .vagrant
+
+.DS_Store
+*.pyc

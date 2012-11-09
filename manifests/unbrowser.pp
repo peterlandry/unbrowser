@@ -4,6 +4,7 @@ group { "puppet":
 
 include python
 include phantomjs
+include casperjs
 
 class unbrowser {
   package {
@@ -14,10 +15,9 @@ class unbrowser {
   exec { "install_requirements":
     command => "pip install -r /vagrant/requirements.txt",
     path => "/usr/local/bin:/usr/bin:/bin",
-    require => Class["python"],
+    require => Class["python"]
   }
 
 }
 
-include unbrowser 
-
+include unbrowser

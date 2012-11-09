@@ -6,9 +6,11 @@ class phantomjs {
     }
 
     exec { "build_phantomjs":
-        command => 'git clone git://github.com/ariya/phantomjs.git /tmp/phantomjs && cd /tmp/phantomjs && git checkout 1.2 && qmake-qt4 && make && mv /tmp/phantomjs/bin/phantomjs /usr/local/bin/ && rm /tmp/phantomjs',
+        command => 'cd /home/vagrant/ && wget http://phantomjs.googlecode.com/files/phantomjs-1.7.0-linux-i686.tar.bz2 && tar xvjf phantomjs-1.7.0-linux-i686.tar.bz2 && sudo ln -s /home/vagrant/phantomjs-1.7.0-linux-i686/bin/phantomjs /usr/local/bin/phantomjs',
         path => '/usr/local/bin:/usr/bin:/bin',
         require => [Package['libqt4-dev'],Package['qt4-qmake']],
-        unless => 'test -x /usr/local/bin/phantomjs'
+        unless => 'test -x /usr/local/bin/phantomjs',
+        user => "vagrant",
+        provider => "shell"
     }
 }

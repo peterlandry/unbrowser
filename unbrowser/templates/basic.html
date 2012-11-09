@@ -46,6 +46,10 @@
         <input type="text" id="unbrowser_url" value="http://localhost:5000/">
         <label for="page_to_render" >Page to Render</label>
         <input type="text" id="page_to_render" value="http://google.com">
+        <label for="format" >Format</label>
+        <input type="text" id="format" value="png">
+        <label for="casper_options" >Casper Options (as JSON)</label>
+        <input type="text" id="casper_options" value="{}">
 
         <a href="#" id="submit_btn">Submit</a>
     </p>
@@ -67,9 +71,11 @@
     $(function(){
        $("#submit_btn").click(function(){
           var unbrowser_url = $("#unbrowser_url").val();
-          var page_to_render =$("#page_to_render").val();
+          var page_to_render = $("#page_to_render").val();
+          var casper_options = $("#casper_options").val();
+          var format = $("#format").val();
 
-          $.post(unbrowser_url+"webkit/rasterize/",{url:page_to_render}, function(data){
+          $.post(unbrowser_url+"webkit/render/",{url:page_to_render, casper_options:casper_options, format: format}, function(data){
               $("#response").html("<b>Status:</b>"+data.status+"<br/> <img src='"+data.download_path+"'>");
               console.log(data);
           });
