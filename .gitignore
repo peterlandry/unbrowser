@@ -1,9 +1,7 @@
-
 *.swp
-
-unbrowser/static/*
 .idea/*
 .vagrant
-
 .DS_Store
 *.pyc
+unbrowser_server/static/*
+unbrowser_server/instance/*
