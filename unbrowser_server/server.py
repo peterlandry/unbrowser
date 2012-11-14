@@ -6,9 +6,7 @@ from functools import wraps
 from flask import Flask, request, url_for, abort, jsonify, render_template
 
 app = Flask(__name__, instance_relative_config=True)
-print app.config
 app.config.from_pyfile('auth.cfg', silent=True)
-print app.config
 
 
 def check_auth(username, password):
